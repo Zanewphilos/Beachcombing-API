@@ -1,0 +1,562 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Beachcombing-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Account/register": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RegisterDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Account/login": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/LoginDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Account/userinfo": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Account/update": {
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateUserDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Account/delete": {
+      "delete": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/CleanupRecords": {
+      "post": {
+        "tags": [
+          "CleanupRecords"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "TrashCounts",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Images",
+            "type": "array",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/FavoritePlaces": {
+      "get": {
+        "tags": [
+          "FavoritePlaces"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FavoritePlace"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "FavoritePlaces"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/FavoritePlaceDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FavoritePlace"
+            }
+          }
+        }
+      }
+    },
+    "/api/FavoritePlaces/{id}": {
+      "put": {
+        "tags": [
+          "FavoritePlaces"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/FavoritePlaceUpdateDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "FavoritePlaces"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Instruction/Instruction": {
+      "get": {
+        "tags": [
+          "Instruction"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MapsProxy/Geocode": {
+      "get": {
+        "tags": [
+          "MapsProxy"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MapsProxy/GeocodeByCoordinates": {
+      "get": {
+        "tags": [
+          "MapsProxy"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "latitude",
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "in": "query",
+            "name": "longitude",
+            "type": "number",
+            "format": "double"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Tides": {
+      "get": {
+        "tags": [
+          "Tides"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "latitude",
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "in": "query",
+            "name": "longitude",
+            "type": "number",
+            "format": "double"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Weather": {
+      "get": {
+        "tags": [
+          "Weather"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "latitude",
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "in": "query",
+            "name": "longitude",
+            "type": "number",
+            "format": "double"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "FavoritePlace": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        },
+        "fullAddress": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "tideData": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "FavoritePlaceDTO": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        },
+        "fullAddress": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "tideData": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "FavoritePlaceUpdateDto": {
+      "type": "object",
+      "properties": {
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "LoginDto": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "RegisterDto": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
+        },
+        "selfIntro": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateUserDto": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "selfIntro": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "normalizedUserName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "normalizedEmail": {
+          "type": "string"
+        },
+        "emailConfirmed": {
+          "type": "boolean"
+        },
+        "passwordHash": {
+          "type": "string"
+        },
+        "securityStamp": {
+          "type": "string"
+        },
+        "concurrencyStamp": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "phoneNumberConfirmed": {
+          "type": "boolean"
+        },
+        "twoFactorEnabled": {
+          "type": "boolean"
+        },
+        "lockoutEnd": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "lockoutEnabled": {
+          "type": "boolean"
+        },
+        "accessFailedCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "selfIntro": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
+        },
+        "latitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "longitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "favoritePlaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FavoritePlace"
+          }
+        },
+        "isLocationShared": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
